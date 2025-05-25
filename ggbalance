@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GGbalance — Магазин игровой валюты</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    :root {
+      --yellow: #FFD700;
+      --black: #111;
+      --white: #fff;
+    }
+
+    body.light {
+      background-color: var(--white);
+      color: var(--black);
+    }
+
+    body.dark {
+      background-color: var(--black);
+      color: var(--yellow);
+    }
+
+    header {
+      padding: 1rem;
+      text-align: center;
+      font-size: 2rem;
+      background-color: var(--yellow);
+      color: var(--black);
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .product {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--yellow);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.02);
+    }
+
+    .buy-btn {
+      margin-top: 10px;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: gray;
+      padding: 1rem;
+    }
+
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modal-content {
+      background: var(--white);
+      color: var(--black);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    #modal input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #modal button {
+      margin-top: 1rem;
+      background: var(--yellow);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="dark">
+  <button class="toggle" onclick="toggleTheme()">Сменить тему</button>
+  <header>GGbalance</header>
+  <div class="container">
+    <h2>🎮 PUBG Mobile — UC</h2>
+    <div class="product">60 UC — 11 000 сум <button class="buy-btn" onclick="buy('PUBG', '60 UC')">Купить</button></div>
+    <div class="product">300 + 25 UC — 59 000 сум <button class="buy-btn" onclick="buy('PUBG', '325 UC')">Купить</button></div>
+    <div class="product">600 + 60 UC — 118 000 сум <button class="buy-btn" onclick="buy('PUBG', '660 UC')">Купить</button></div>
+    <div class="product">1500 + 300 UC — 299 000 сум <button class="buy-btn" onclick="buy('PUBG', '1800 UC')">Купить</button></div>
+    <div class="product">3000 + 850 UC — 590 000 сум <button class="buy-btn" onclick="buy('PUBG', '3850 UC')">Купить</button></div>
+    <div class="product">6000 + 2100 UC — 1 189 000 сум <button class="buy-btn" onclick="buy('PUBG', '8100 UC')">Купить</button></div>
+    <div class="product">12000 + 4200 UC — 2 365 000 сум <button class="buy-btn" onclick="buy('PUBG', '16200 UC')">Купить</button></div>
+
+    <h2>🪙 Standoff 2 — Голда</h2>
+    <div class="product">100 Голда — 17 200 сум <button class="buy-btn" onclick="buy('Standoff 2', '100 Голда')">Купить</button></div>
+    <div class="product">500 Голда — 74 000 сум <button class="buy-btn" onclick="buy('Standoff 2', '500 Голда')">Купить</button></div>
+    <div class="product">1000 Голда — 131 000 сум <button class="buy-btn" onclick="buy('Standoff 2', '1000 Голда')">Купить</button></div>
+    <div class="product">3000 Голда — 292 500 сум <button class="buy-btn" onclick="buy('Standoff 2', '3000 Голда')">Купить</button></div>
+
+    <h2>💎 Brawl Stars — Гемы</h2>
+    <div class="product">30 + 3 Гемов — 29 500 сум <button class="buy-btn" onclick="buy('Brawl Stars', '33 Гемов')">Купить</button></div>
+    <div class="product">80 + 8 Гемов — 73 000 сум <button class="buy-btn" onclick="buy('Brawl Stars', '88 Гемов')">Купить</button></div>
+    <div class="product">170 + 17 Гемов — 144 500 сум <button class="buy-btn" onclick="buy('Brawl Stars', '187 Гемов')">Купить</button></div>
+    <div class="product">360 Гемов — 287 500 сум <button class="buy-btn" onclick="buy('Brawl Stars', '360 Гемов')">Купить</button></div>
+  </div>
+  <footer>Владелец: <a href="https://t.me/equikk1" style="color: var(--yellow);">@equikk1</a></footer>
+
+  <div id="modal">
+    <div id="modal-content">
+      <h3 id="modal-title">Покупка</h3>
+      <p id="modal-desc"></p>
+      <input type="text" id="user-id" placeholder="Введите ваш ID/почту">
+      <button onclick="confirmBuy()">Подтвердить</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      document.body.classList.toggle('dark');
+    }
+
+    let selectedGame = '';
+    let selectedItem = '';
+
+    function buy(game, item) {
+      selectedGame = game;
+      selectedItem = item;
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('modal-title').innerText = `Покупка — ${game}`;
+      document.getElementById('modal-desc').innerText = `Вы выбрали: ${item}`;
+    }
+
+    function confirmBuy() {
+      const userId = document.getElementById('user-id').value;
+      if (!userId) return alert('Пожалуйста, введите ваш ID или почту.');
+      alert(`Вы заказали ${selectedItem} для ${selectedGame}. Ваш ID: ${userId}. Наш админ @equikk1 свяжется с вами.`);
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('user-id').value = '';
+    }
+
+    window.onclick = function(event) {
+      if (event.target == document.getElementById('modal')) {
+        document.getElementById('modal').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
